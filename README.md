@@ -14,3 +14,8 @@
 - 데이터 : com.jyeory.www.data -> data_db
 
 두 개의 데이터 소스를 만들되 데이터 소스와 연결할 Repository 패키지를 지정하면 깔끔하게 사용할 수 있다.
+
+
+curl --location --request GET 'localhost:18080/country?countryCd=KOR'
+
+curl --location --request GET 'localhost:18080/member?idx=99'
