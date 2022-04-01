@@ -1,0 +1,68 @@
+server:
+  port: 18080
+  servlet:
+    context-path: "/"
+
+spring:
+  config:
+    activate:
+      on-profile: default
+
+  main:
+    allow-bean-definition-overriding: true
+  
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+        show_sql: true
+        format_sql: true
+        generate_statistics: true
+        jdbc:
+          batch_size: 10000
+        order_inserts: true
+        order_updates: true
+
+  datasource:
+    hikari:
+      ds-one:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/user_db?serverTimezone=Asia/Seoul
+        username: user
+        password: User_123
+      ds-two:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/data_db?serverTimezone=Asia/Seoul
+        username: data
+        password: Data_123
+
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+
+  restTemplate:
+    factory:
+      readTimeout: 5000
+      connectTimeout: 3000
+    httpClient:
+      maxConnTotal: 100
+      maxConnPerRoute: 5
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        web: debug
+        security: debug
+      hibernate:
+        SQL: DEBUG
+        type: trace
